@@ -163,6 +163,16 @@ function Menu({ snap, hasSave, go }: { snap: Snapshot; hasSave: boolean; go: (s:
   // The three biggest contracts among our listed starters.
   const stars = useMemo(() => snap.roster.filter((p) => p.chart?.depth === 1).sort((a, b) => b.apy - a.apy).slice(0, 3), [snap])
   const firstRounders = snap.picks.filter((p) => p.owner === snap.team && p.year === snap.season && p.round === 1)
+  // Without a first-rounder, the team's earliest pick this year says more than "none".
+  const earliest = snap.picks
+    .filter((p) => p.owner === snap.team && p.year === snap.season)
+    .sort((a, b) => (a.overall ?? 999) - (b.overall ?? 999))[0]
+  const picksStat =
+    firstRounders.length > 1
+      ? { label: '1st-round picks', value: firstRounders.map((p) => `#${p.overall}`).join(' · ') }
+      : firstRounders.length === 1
+        ? { label: '1st-round pick', value: `#${firstRounders[0].overall}` }
+        : { label: 'No 1st · first pick', value: earliest ? `R${earliest.round} · #${earliest.overall}` : 'None' }
   const fullName = snap.teams.find((t) => t.id === snap.team)?.fullName
 
   return (
@@ -204,7 +214,7 @@ function Menu({ snap, hasSave, go }: { snap: Snapshot; hasSave: boolean; go: (s:
         <div className="brief-grid">
           <Stat label="Effective cap space" value={money(cap.effectiveSpace)} tone={cap.effectiveSpace < 0 ? 'neg' : 'pos'} />
           <Stat label="Under contract" value={String(cap.contractCount)} />
-          <Stat label="1st-round picks" value={firstRounders.map((p) => `#${p.overall}`).join(' · ') || 'None'} />
+          <Stat label={picksStat.label} value={picksStat.value} />
           <Stat label="Projected cap" value={money(cap.adjustedCap)} />
         </div>
         <div className="eyebrow brief-sub">Cornerstones</div>
