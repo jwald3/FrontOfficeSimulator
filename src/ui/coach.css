@@ -1,0 +1,50 @@
+.coach {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 18px 24px 16px;
+  overflow-y: auto;
+}
+
+.coach-decision {
+  max-width: 720px;
+  display: grid;
+  gap: 10px;
+  padding: 30px 40px 32px;
+  background: var(--panel);
+}
+.coach-name { font-size: clamp(44px, 6vw, 72px); line-height: 0.95; }
+.coach-copy { margin: 0; font-size: 16px; line-height: 1.5; max-width: 52ch; }
+.coach-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+
+.coach-search { display: grid; gap: 16px; }
+.coach-status p { margin: 6px 0 0; }
+.coach-board { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.coach-card {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 18px 22px 20px;
+  background: var(--panel);
+  transition: opacity 0.2s;
+}
+.coach-card .btn { justify-self: start; margin-top: 8px; }
+.coach-card-name { font-size: 24px; }
+.coach-card-role { font-size: 14px; }
+.coach-card-state { margin-top: 8px; font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 13px; }
+.coach-card[data-declined='true'] { opacity: 0.45; }
+.coach-card[data-declined='true'] .coach-card-state { color: var(--alert); }
+.coach-card[data-chosen='true'] { --slab-edge: transparent; box-shadow: inset 0 3px 0 var(--pop); }
+.coach-card[data-chosen='true'] .coach-card-state { color: var(--pop); }
+
+@media (max-width: 720px) {
+  .coach { padding: 12px 14px 20px; }
+  .coach-decision { padding: 22px 20px; }
+  .coach-actions .btn { flex: 1 1 100%; justify-content: center; }
+}
+.coach-search .board-tools { margin: 0; }
+.coach-empty { padding: 20px 4px; }
+.coach-case { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 6px; }
+.coach-case p { margin: 6px 0 0; font-size: 15px; line-height: 1.5; color: var(--text-soft); white-space: pre-line; }
+.coach-card-note { font-size: 13px; line-height: 1.4; color: var(--text-soft); border-left: 2px solid var(--line-hi); padding-left: 8px; margin-top: 2px; }

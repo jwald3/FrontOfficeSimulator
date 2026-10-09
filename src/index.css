@@ -1,0 +1,245 @@
+@import '@fontsource/barlow-condensed/500.css';
+@import '@fontsource/barlow-condensed/600.css';
+@import '@fontsource/barlow-condensed/700.css';
+@import '@fontsource/barlow-condensed/800.css';
+@import '@fontsource/barlow-condensed/700-italic.css';
+@import '@fontsource/barlow-condensed/800-italic.css';
+@import '@fontsource/barlow/400.css';
+@import '@fontsource/barlow/500.css';
+@import '@fontsource/barlow/600.css';
+
+:root {
+  /* Team colours. ui/theme.ts rewrites these when a team is picked; the values here
+     are the neutral league colours shown before then. Tints use the -rgb triplets,
+     e.g. rgb(var(--accent-rgb) / 0.1). */
+  --bg: rgb(6, 8, 11);
+  --bg-2: rgb(10, 14, 18);
+  --panel-rgb: 14 20 26;
+  --panel-hi-rgb: 22 31 39;
+  /* Near-black and dark tinted shades, for scrims and gradients. */
+  --shade-rgb: 4 5 7;
+  --deep-rgb: 10 19 29;
+  --text: rgb(239, 242, 245);
+  --text-soft: rgb(215, 222, 228);
+  --muted: rgb(139, 153, 167);
+  --dim: rgb(84, 94, 105);
+  /* The team colour as a fill, and a lighter step of it. */
+  --team-rgb: 31 59 87;
+  --team-hi-rgb: 43 82 121;
+  /* A light tint for buttons and lines (dark text sits on it), and the highlight. */
+  --accent-rgb: 188 211 234;
+  --pop-rgb: 242 201 76;
+  /* Dark text on accent and highlight fills. */
+  --ink: rgb(5, 13, 20);
+
+  --panel: rgb(var(--panel-rgb) / 0.86);
+  --panel-hi: rgb(var(--panel-hi-rgb) / 0.92);
+  --line: rgb(var(--accent-rgb) / 0.12);
+  --line-hi: rgb(var(--accent-rgb) / 0.32);
+  --team: rgb(var(--team-rgb));
+  --team-hi: rgb(var(--team-hi-rgb));
+  --accent: rgb(var(--accent-rgb));
+  --pop: rgb(var(--pop-rgb));
+
+  /* Fixed meanings, the same for every team. */
+  --gold: #f2c94c;
+  --alert: #ff5b3a;
+  --cool: #66c7ff;
+
+  --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'Barlow', 'Segoe UI', sans-serif;
+
+  --slant: 14px;
+  --ease-snap: cubic-bezier(0.2, 0.9, 0.1, 1);
+
+  color-scheme: dark;
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body { overflow: hidden; background: var(--bg); }
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+/* Native select arrows sit flush against the border; draw our own with room around it. */
+select {
+  appearance: none;
+  padding-right: 34px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238ea89b' stroke-width='1.8'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px 8px;
+  cursor: pointer;
+}
+select:disabled { cursor: not-allowed; }
+:focus-visible { outline: 2px solid var(--pop); outline-offset: 2px; }
+
+/* ─── Atmosphere: turf, vignette, grain ──────────────────────────────────── */
+
+.stadium {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 70% -10%, rgb(var(--team-hi-rgb) / 0.38), transparent 60%),
+    radial-gradient(90% 70% at -10% 110%, rgb(var(--team-rgb) / 0.35), transparent 60%),
+    linear-gradient(180deg, color-mix(in srgb, rgb(var(--deep-rgb)) 60%, var(--bg)) 0%, var(--bg) 70%);
+}
+.stadium::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ─── Type ───────────────────────────────────────────────────────────────── */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.9;
+}
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.muted { color: var(--muted); }
+
+/* ─── Slanted surfaces ───────────────────────────────────────────────────── */
+
+.slab {
+  position: relative;
+  background: var(--panel);
+  border: 0;
+  /* No backdrop blur: it would give every slab its own layer, and text on a
+     transparent layer loses ClearType antialiasing. The panel is near-opaque anyway. */
+  clip-path: polygon(var(--slant) 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%);
+}
+/* The outline, drawn along the slanted shape: a CSS border sits on the square box,
+   so the clip would leave only its top and bottom plus stubs at the corners. Set
+   --slab-edge to recolour it. */
+.slab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--slab-edge, var(--line));
+  clip-path: polygon(
+    evenodd,
+    var(--slant) 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%, var(--slant) 0,
+    calc(var(--slant) + 1px) 1px, calc(100% - 1.5px) 1px, calc(100% - var(--slant) - 0.5px) calc(100% - 1px), 1.5px calc(100% - 1px), calc(var(--slant) + 1px) 1px
+  );
+}
+
+/* Light sweep across a focused/hovered tile. */
+.sheen { position: relative; overflow: hidden; isolation: isolate; }
+.sheen::after {
+  content: '';
+  position: absolute;
+  inset: -50% auto -50% -60%;
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  transform: skewX(-20deg) translateX(0);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.sheen:hover::after,
+.sheen:focus-visible::after,
+.sheen[data-active='true']::after {
+  animation: sweep 0.75s var(--ease-snap);
+}
+@keyframes sweep {
+  0% { opacity: 1; transform: skewX(-20deg) translateX(0); }
+  100% { opacity: 0; transform: skewX(-20deg) translateX(420%); }
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────────── */
+
+.btn {
+  --c: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 22px;
+  border: 0;
+  background: var(--c);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 17px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  transition: background-color 0.15s;
+}
+/* Hover and press change the colour only. A filter or a transform would lift the
+   button onto its own compositor layer, where text loses its sharp antialiasing. */
+.btn:hover:not(:disabled) { background: color-mix(in srgb, var(--c) 85%, #fff); }
+.btn:active:not(:disabled) { background: color-mix(in srgb, var(--c) 85%, #000); }
+/* Disabled is a solid muted chip, not a see-through version of the button. */
+.btn:disabled { background: rgba(255, 255, 255, 0.07); color: color-mix(in srgb, var(--text) 32%, transparent); }
+.btn.ghost {
+  background: rgb(var(--accent-rgb) / 0.09);
+  color: var(--text);
+}
+/* Ghost buttons are a soft tinted fill, not an outline: a 1px slanted line can't
+   render crisply at button size, a filled edge can. */
+.btn.ghost:hover:not(:disabled) { background: rgb(var(--accent-rgb) / 0.16); }
+.btn.ghost:active:not(:disabled) { background: rgb(var(--accent-rgb) / 0.06); }
+.btn.danger { --c: var(--alert); color: #1a0500; }
+
+/* Controller-style key hint: [Q] [E] [ENTER] */
+.key {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 3px;
+  /* A flat tinted fill like the ghost buttons: an inset shadow edge blurs at this size. */
+  background: rgb(var(--accent-rgb) / 0.14);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-style: normal;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+.btn .key { background: rgba(0, 0, 0, 0.18); color: inherit; box-shadow: none; }
+
+/* Scrollbars that belong in a game menu, everywhere: a thin mint rail, no arrow buttons. */
+.scroll { overflow-y: auto; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--line-hi); border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background-color: var(--accent); }
+::-webkit-scrollbar-button, ::-webkit-scrollbar-corner { display: none; background: transparent; }
+/* Browsers without the pseudo-elements (Firefox) take the standard properties; Chromium would let them override the above. */
+@supports not selector(::-webkit-scrollbar) {
+  * { scrollbar-width: thin; scrollbar-color: var(--line-hi) transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

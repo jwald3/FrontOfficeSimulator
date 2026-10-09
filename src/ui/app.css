@@ -1,0 +1,16 @@
+.app { position: relative; height: 100%; }
+.fill { height: 100%; }
+
+.loading {
+  height: 100%;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 18px;
+  text-align: center;
+}
+.loading-mark { font-size: 96px; }
+.loading-mark span { color: var(--pop); }
+.loading-bar { width: 260px; height: 4px; background: rgba(255, 255, 255, 0.08); overflow: hidden; transform: skewX(-20deg); }
+.loading-bar span { display: block; width: 40%; height: 100%; background: var(--pop); animation: load 1.1s var(--ease-snap) infinite; }
+@keyframes load { from { transform: translateX(-110%); } to { transform: translateX(260%); } }

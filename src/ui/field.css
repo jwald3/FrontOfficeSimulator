@@ -1,0 +1,163 @@
+.pitch {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  min-height: 300px;
+  overflow: hidden;
+  clip-path: polygon(14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+}
+/* The outline, drawn along the slant (a square border would be clipped to stubs). */
+.pitch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--line-hi);
+  clip-path: polygon(
+    evenodd,
+    14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%, 14px 0,
+    15px 1px, calc(100% - 1.5px) 1px, calc(100% - 14.5px) calc(100% - 1px), 1.5px calc(100% - 1px), 15px 1px
+  );
+}
+.pitch-compact { aspect-ratio: 4 / 3; }
+
+/* ─── Turf ────────────────────────────────────────────────────────────────── */
+
+.turf {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.06) 0 10%, transparent 10% 20%),
+    radial-gradient(120% 80% at 50% 50%, #1f6a3c, #0d3a22 75%);
+}
+.turf::after {
+  /* Hash marks down both sides of the middle. */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.28) 0 2px, transparent 2px 2%) 38% 0 / 1.2% 100% no-repeat,
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.28) 0 2px, transparent 2px 2%) 62% 0 / 1.2% 100% no-repeat;
+}
+.yard { position: absolute; left: 0; right: 0; height: 2px; background: rgba(255, 255, 255, 0.16); }
+.los { position: absolute; left: 0; right: 0; top: 50%; height: 3px; background: var(--pop); box-shadow: 0 0 14px var(--pop); opacity: 0.8; }
+/* The field's left edge slants 14px across its height: Defense, at the top, sits
+   that much further in so both labels clear the edge by the same 14px. */
+.unit-label { position: absolute; font-size: 14px; letter-spacing: 0.3em; color: rgba(255, 255, 255, 0.4); }
+.unit-label[data-unit='def'] { top: 3%; left: 28px; }
+.unit-label[data-unit='off'] { bottom: 3%; left: 14px; }
+
+/* ─── Players ─────────────────────────────────────────────────────────────── */
+
+.chip-player {
+  --ring: #9aa8ad;
+  position: absolute;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  translate: -50% -50%;
+  z-index: 1;
+}
+.chip-player[data-tier='bronze'] { --ring: #c99a6b; }
+.chip-player[data-tier='gold'] { --ring: #ffd25a; }
+.chip-player[data-tier='elite'] { --ring: var(--pop); }
+.chip-player[data-tier='empty'] { --ring: var(--alert); }
+
+.jersey {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 17px;
+  background: var(--team);
+  color: #fff;
+  border: 3px solid var(--ring);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+.chip-player[data-unit='def'] .jersey { background: #f2f5f3; color: var(--team); }
+.chip-player[data-tier='empty'] .jersey { background: rgba(0, 0, 0, 0.5); color: var(--alert); border-style: dashed; }
+.chip-name {
+  padding: 1px 6px;
+  background: rgba(0, 0, 0, 0.72);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.chip-pos { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.6); margin-top: -2px; }
+
+/* Newcomers pulse so you can see what changed. */
+.chip-player[data-new='true'] .jersey { animation: newcomer 1.6s ease-out infinite; }
+@keyframes newcomer {
+  0% { box-shadow: 0 0 0 0 rgb(var(--pop-rgb) / 0.8); }
+  100% { box-shadow: 0 0 0 16px rgb(var(--pop-rgb) / 0); }
+}
+
+.specialists {
+  position: absolute;
+  /* Clear of the slanted right edge, which comes in 14px at the bottom. */
+  right: 28px;
+  bottom: 10px;
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+}
+.spec b { color: var(--accent); font-size: 14px; margin-right: 2px; }
+
+/* ─── Depth chart overlay ─────────────────────────────────────────────────── */
+
+.depth-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 42;
+  display: grid;
+  /* Centred, but never cropped: a panel taller than the window scrolls from its top. */
+  place-items: safe center;
+  overflow-y: auto;
+  padding: 24px;
+  background: rgb(var(--shade-rgb) / 0.86);
+  backdrop-filter: blur(4px);
+}
+.depth-panel { width: min(1100px, 100%); display: grid; gap: 12px; }
+.depth-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
+.depth-title { font-size: 40px; }
+.depth-rating { text-align: right; }
+.depth-rating .num { font-size: 32px; color: var(--accent); }
+
+/* ─── Table view ──────────────────────────────────────────────────────────── */
+
+.depth-table { display: grid; gap: 14px; max-height: min(62vh, 640px); overflow-y: auto; padding-right: 6px; }
+.dt-unit table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.dt-unit .eyebrow { margin-bottom: 4px; }
+.dt-unit th, .dt-unit td { padding: 6px 10px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.dt-unit thead th { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.dt-unit tbody th { width: 64px; font-size: 18px; }
+.dt-unit td:nth-child(2) { width: 42%; }
+.dt-player { display: inline-flex; align-items: center; gap: 6px; margin: 0 14px 4px 0; }
+.dt-depth { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; font-size: 12px; border: 2px solid var(--ring, #9aa8ad); }
+.dt-player[data-tier='elite'] { --ring: var(--pop); }
+.dt-player[data-tier='bronze'] { --ring: #c99a6b; }
+.dt-player[data-tier='empty'] { --ring: var(--alert); color: var(--alert); }
+.dt-player[data-new='true'] { color: var(--pop); }
+.dt-age { font-size: 12px; }
+.dt-backups .dt-player { color: var(--muted); }
+.dt-backups .dt-player[data-new='true'] { color: var(--pop); }
+.depth-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+
+@media (max-width: 720px) {
+  .pitch { aspect-ratio: 3 / 4; min-height: 0; clip-path: none; }
+  .pitch::after { display: none; }
+  .unit-label[data-unit='def'] { left: 14px; }
+  .dt-unit td:nth-child(2) { width: auto; }
+  .jersey { width: 28px; height: 28px; font-size: 13px; border-width: 2px; }
+  .chip-name { font-size: 9px; padding: 0 3px; }
+  .chip-pos { display: none; }
+  .specialists { left: 10px; right: auto; }
+  .depth-overlay { padding: 12px; align-items: start; overflow-y: auto; }
+  .depth-title { font-size: 28px; }
+}

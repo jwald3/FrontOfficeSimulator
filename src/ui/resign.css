@@ -1,0 +1,171 @@
+.resign { grid-template-columns: minmax(0, 1fr) minmax(400px, 480px); }
+.resign-wide { grid-template-columns: 1fr; }
+.resign-count { font-size: 13px; margin-left: auto; }
+.seg-count { margin-left: 6px; font-size: 12px; opacity: 0.7; }
+
+/* ─── Expiring rows ───────────────────────────────────────────────────────── */
+
+.xrow { grid-template-columns: 42px minmax(140px, 1fr) 44px 120px 104px; }
+.xrow[data-status='signed'], .xrow[data-status='tagged'], .xrow[data-status='tendered'] { opacity: 0.75; }
+.xrow[data-status='walked'], .xrow[data-status='declined'] { opacity: 0.45; }
+.xrow-ask { font-size: 17px; }
+.xrow-ask small { font-size: 12px; color: var(--muted); }
+.xrow-status {
+  justify-self: end;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  color: var(--muted);
+}
+.xrow-status[data-status='signed'], .xrow-status[data-status='tagged'], .xrow-status[data-status='tendered'] { color: var(--pop); }
+.xrow-status[data-status='walked'] { color: var(--alert); }
+.flag-ufa { border-color: var(--line-hi); color: var(--muted); }
+.flag-void { border-color: var(--gold); color: var(--gold); }
+.flag-rfa, .flag-erfa { border-color: var(--cool); color: var(--cool); }
+
+.pips { display: inline-flex; gap: 3px; }
+.pips i { width: 10px; height: 6px; background: rgba(255, 255, 255, 0.1); transform: skewX(-20deg); }
+.pips i[data-on='true'] { background: var(--accent); }
+
+/* ─── Negotiation card ────────────────────────────────────────────────────── */
+
+.negcard { gap: 14px; }
+.neg-hero { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; }
+.neg-hero .card-name { font-size: 30px; margin: 2px 0 4px; }
+.neg-ask { font-size: 13px; color: var(--text-soft); line-height: 1.4; }
+.neg-ask b { color: var(--pop); font-size: 16px; }
+
+.agent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  background: rgba(102, 199, 255, 0.08);
+  border-left: 3px solid var(--cool);
+  font-size: 14px;
+  line-height: 1.4;
+}
+.agent-tag { background: var(--cool); color: #04121b; padding: 2px 8px; font-size: 13px; flex: none; }
+
+.negotiation { display: grid; gap: 12px; }
+.field { display: grid; grid-template-columns: 92px 1fr; align-items: center; gap: 10px; }
+.field > label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); font-weight: 600; }
+.seg-years .seg-btn { flex: 1; font-size: 16px; padding: 6px 0; }
+.seg-years { width: 100%; }
+
+.slider-row { display: flex; align-items: center; gap: 8px; }
+.slider-row input { flex: 1; accent-color: var(--pop); height: 22px; }
+.slider-val { min-width: 76px; text-align: right; font-size: 20px; }
+.nudge {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
+  font-weight: 700;
+}
+.nudge:hover { border-color: var(--accent); }
+
+.structs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.struct {
+  padding: 7px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 13px;
+  color: var(--muted);
+}
+.struct[aria-pressed='true'] { border-color: var(--accent); color: var(--text); background: rgb(var(--team-hi-rgb) / 0.4); }
+
+/* Agent read meter */
+.meter { --c: var(--alert); padding: 10px 12px; background: rgba(0, 0, 0, 0.25); border: 1px solid var(--line); }
+.meter[data-band='short'] { --c: var(--gold); }
+.meter[data-band='close'] { --c: var(--accent); }
+.meter[data-band='deal'] { --c: var(--pop); }
+.meter-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.meter-label { font-size: 24px; color: var(--c); }
+.meter-track {
+  position: relative;
+  height: 10px;
+  background: linear-gradient(90deg, var(--alert), var(--gold) 35%, var(--accent) 70%, var(--pop));
+  transform: skewX(-20deg);
+  opacity: 0.85;
+}
+.meter-needle {
+  position: absolute;
+  top: -5px;
+  width: 4px;
+  height: 20px;
+  margin-left: -2px;
+  background: #fff;
+  box-shadow: 0 0 10px #fff;
+}
+
+.neg-impact { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.neg-impact > div { display: grid; gap: 2px; padding: 8px 10px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--line); }
+.neg-impact .num { font-size: 20px; }
+
+.neg-actions { display: flex; gap: 8px; justify-content: space-between; }
+.neg-actions .submit { --c: var(--pop); flex: 1; justify-content: center; }
+
+.tags { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.tagbtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 12px;
+  background: rgba(242, 201, 76, 0.08);
+  border: 1px solid rgba(242, 201, 76, 0.4);
+  color: var(--gold);
+  font-size: 15px;
+}
+.tagbtn:hover:not(:disabled) { background: rgba(242, 201, 76, 0.18); }
+.tagbtn:disabled { opacity: 0.4; }
+.tags-note { grid-column: 1 / -1; font-size: 12px; }
+
+.walk { justify-content: center; font-size: 14px; }
+
+/* Tenders */
+.tenders { display: grid; gap: 6px; }
+.tender {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: 'name amt' 'comp amt';
+  padding: 10px 14px;
+  background: rgba(102, 199, 255, 0.06);
+  border: 1px solid rgba(102, 199, 255, 0.3);
+  text-align: left;
+}
+.tender:hover { background: rgba(102, 199, 255, 0.14); }
+.tender-name { grid-area: name; font-size: 18px; }
+.tender-comp { grid-area: comp; font-size: 12px; }
+.tender-amt { grid-area: amt; align-self: center; font-size: 22px; color: var(--cool); }
+.tenders-or { text-align: center; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; padding-top: 4px; }
+
+.resolved { display: grid; gap: 14px; }
+.resolved-stamp { font-size: 40px; color: var(--pop); }
+.resolved[data-status='walked'] .resolved-stamp, .resolved[data-status='declined'] .resolved-stamp { color: var(--alert); }
+
+/* ─── Futures ─────────────────────────────────────────────────────────────── */
+
+.futures { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+.frow { grid-template-columns: 36px minmax(160px, 1fr) 44px 90px 130px; padding: 5px 14px; }
+.frow[data-dim='true'] { opacity: 0.4; }
+.frow-btn { justify-self: end; padding: 6px 18px; font-size: 14px; }
+.frow-state { justify-self: end; font-size: 13px; }
+
+@media (max-width: 1180px) {
+  .xrow { grid-template-columns: 42px minmax(120px, 1fr) 44px 100px 90px; }
+}
+
+/* ─── Simulated re-signings ───────────────────────────────────────────────── */
+
+.sim-group[data-kind='sign'] .eyebrow { color: var(--pop); }
+.sim-group[data-kind='let-walk'] .eyebrow { color: var(--muted); }
+.sim-walks { margin: 6px 0 0; font-size: 13px; line-height: 1.6; }

@@ -1,0 +1,171 @@
+.draft { height: 100%; display: flex; flex-direction: column; padding: 18px 24px 16px; min-height: 0; gap: 12px; }
+.draft .board-head { margin-bottom: 0; align-items: center; }
+
+/* ─── Order strip ─────────────────────────────────────────────────────────── */
+
+.strip { display: flex; gap: 4px; overflow: hidden; mask-image: linear-gradient(90deg, #000 85%, transparent); }
+.strip-pick {
+  flex: none;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas: 'n r' 'team team';
+  gap: 0 8px;
+  align-items: baseline;
+  min-width: 70px;
+  /* Uneven so the text's ink, not its line boxes, sits an even 8px from top and bottom. */
+  padding: 5px 12px 6px;
+  line-height: 1;
+  /* Filled, no outline: a clipped border breaks at the corners and its slants render soft. */
+  background: rgb(var(--accent-rgb) / 0.08);
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+}
+.strip-pick[data-state='done'] { opacity: 0.35; }
+.strip-pick[data-state='now'] { background: var(--team-hi); }
+.strip-pick[data-ours='true'] { box-shadow: inset 0 -3px 0 var(--pop); }
+.strip-n { grid-area: n; font-size: 20px; }
+/* Its cap tops level with the pick number's. */
+.strip-r { grid-area: r; align-self: start; margin-top: 1px; font-size: 11px; line-height: 1; color: var(--muted); }
+.strip-team { grid-area: team; font-size: 26px; line-height: 1; }
+.strip-pick[data-ours='true'] .strip-team { color: var(--pop); }
+
+/* ─── War room ────────────────────────────────────────────────────────────── */
+
+.warroom { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(380px, 460px); gap: 18px; }
+.brow { grid-template-columns: 34px 34px minmax(150px, 1fr) 150px 64px; padding: 5px 12px; }
+.brow-rank { color: var(--muted); font-size: 16px; }
+.proj-round { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 13px; }
+.fit {
+  justify-self: start;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 12px;
+  color: var(--dim);
+}
+.fit[data-fit='high'] { color: var(--pop); }
+.fit[data-fit='mid'] { color: var(--accent); }
+.fit[data-fit='filled'] { color: var(--muted); }
+
+.clockside { display: flex; flex-direction: column; gap: 12px; min-height: 0; }
+.otc { display: grid; gap: 12px; padding: 0 0 16px; background: var(--panel-hi); border: 1px solid var(--accent); }
+.otc-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 18px;
+  font-size: 26px;
+  background: repeating-linear-gradient(-60deg, transparent 0 14px, rgba(0, 0, 0, 0.12) 14px 16px), var(--pop);
+  color: var(--ink);
+  position: relative;
+}
+/* The pulse is a light overlay above the text, so the text itself never leaves the
+   page's layer (a filter animation on the banner would soften it). */
+.otc-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: #fff;
+  opacity: 0;
+  animation: banner-pulse 1.6s ease-in-out infinite;
+}
+@keyframes banner-pulse { 50% { opacity: 0.12; } }
+.otc-banner .num { font-size: 18px; }
+.prospect { display: grid; gap: 12px; padding: 0 18px; }
+.prospect-hero { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; }
+.prospect-name { font-size: 32px; margin: 2px 0; }
+.prospect-note { margin: 0; padding: 8px 12px; border-left: 3px solid var(--accent); background: rgb(var(--accent-rgb) / 0.06); font-size: 14px; line-height: 1.45; }
+.hint { background: rgba(102, 199, 255, 0.08); border: 1px dashed rgba(102, 199, 255, 0.5); padding: 8px 12px; text-align: left; font-size: 13px; color: #cfeaff; }
+.draftbtn { --c: var(--pop); justify-content: center; font-size: 22px; padding: 14px; }
+/* Trade-down calls: a compact button on the clock card, opening a dialog of offers. */
+.phone-btn {
+  margin: 0 18px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  text-align: left;
+  background: rgba(102, 199, 255, 0.07);
+  border: 1px solid rgba(102, 199, 255, 0.35);
+  border-left: 3px solid var(--cool);
+  color: var(--text);
+}
+.phone-btn:hover { background: rgba(102, 199, 255, 0.13); }
+.phone-icon { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--cool); animation: phone-shake 1.6s ease-in-out infinite; }
+.phone-icon svg { width: 16px; height: 16px; fill: var(--ink); }
+@keyframes phone-shake { 0%, 70%, 100% { transform: rotate(0); } 75% { transform: rotate(-12deg); } 80% { transform: rotate(12deg); } 85% { transform: rotate(-8deg); } 90% { transform: rotate(6deg); } }
+.phone-text { display: grid; gap: 1px; min-width: 0; font-size: 12px; }
+.phone-text b { font-size: 17px; }
+.phone-open { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cool); white-space: nowrap; }
+.phone-dialog { width: min(600px, 94vw); }
+.phone-eyebrow { color: var(--cool); margin-bottom: 6px; }
+.phone-dialog .downs { padding: 0; }
+.downs { display: grid; gap: 8px; padding: 0 18px; }
+.down { display: flex; justify-content: space-between; gap: 10px; align-items: center; padding: 10px 12px; background: rgba(102, 199, 255, 0.06); border-left: 3px solid var(--cool); }
+.down-team { font-size: 18px; }
+.down-picks { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0; }
+.down-val { font-size: 12px; }
+.down { flex-wrap: wrap; }
+.down .btn { flex: none; white-space: nowrap; }
+/* The offer's details take the room and wrap; the buttons keep their place on the right.
+   Their three lines (team, picks, value) sit an even 9px apart, measured between the
+   visible text and chips: the value's digits sit 2px down in their line box, so it
+   comes up by that much. */
+.down > div:first-child { flex: 1 1 0; min-width: 0; display: grid; justify-items: start; gap: 8px; }
+.down > div:first-child .down-picks { margin: 0; }
+.down > div:first-child .down-val { line-height: 1; margin-top: -2px; }
+.down-buttons { display: grid; gap: 6px; }
+.down-buttons .btn { justify-content: center; }
+.down-counter { flex-basis: 100%; margin-top: 4px; }
+.waiting-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.tradeup-target { display: grid; gap: 4px; margin-bottom: 12px; }
+.tradeup-gauges { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: stretch; margin-top: 12px; }
+.tradeup-patience { display: grid; align-content: center; gap: 6px; padding: 10px 12px; background: rgba(0, 0, 0, 0.25); border: 1px solid var(--line); font-size: 12px; }
+.tradeup-counter { margin-top: 12px; }
+.tradeup-counter .chip[data-new='true'] { background: rgb(var(--pop-rgb) / 0.18); color: var(--pop); }
+@media (max-width: 560px) {
+  .tradeup-gauges { grid-template-columns: 1fr; }
+}
+
+.waiting { display: grid; gap: 10px; padding: 20px; background: var(--panel); border: 1px solid var(--line); }
+.waiting-title { font-size: 34px; }
+.waiting .btn { justify-self: start; }
+
+.feed { list-style: none; margin: 0; padding: 0; flex: 1; min-height: 0; display: grid; align-content: start; gap: 3px; }
+.feed-item { display: grid; grid-template-columns: 34px 44px 1fr auto; gap: 10px; align-items: center; padding: 6px 12px; background: rgb(var(--panel-rgb) / 0.6); font-size: 14px; }
+.feed-item[data-ours='true'] { background: rgb(var(--team-hi-rgb) / 0.45); box-shadow: inset 3px 0 0 var(--pop); }
+.feed-n { color: var(--muted); }
+.feed-team { font-size: 17px; }
+.feed-name { font-weight: 600; }
+/* Your picks: the pick, then who we took or how far off it is. */
+.ourpick { grid-template-columns: 104px 1fr; }
+.ourpick-pick { font-weight: 700; color: var(--muted); }
+.ourpick[data-state='done'] .ourpick-pick { color: var(--text); }
+.ourpick[data-state='now'] { background: rgb(var(--team-hi-rgb) / 0.45); box-shadow: inset 3px 0 0 var(--pop); }
+.ourpick[data-state='now'] .ourpick-pick { color: var(--pop); }
+.ourpick-who { display: flex; flex-wrap: wrap; gap: 2px 8px; align-items: baseline; min-width: 0; }
+.ourpick-none { padding: 6px 12px; }
+.clockside .side-tabs { margin-bottom: 0; }
+
+/* ─── After the draft ─────────────────────────────────────────────────────── */
+
+.recap { flex: 1; min-height: 0; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 12px; align-content: start; }
+.classcard { display: grid; grid-template-columns: auto auto 1fr auto; gap: 14px; align-items: center; padding: 16px 28px; }
+.classcard-pick { font-size: 22px; color: var(--pop); white-space: nowrap; }
+.classcard-name { font-size: 26px; }
+.classcard-value { font-size: 13px; margin-top: 4px; font-weight: 600; }
+
+.udfa { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.udfa-bonus { display: flex; gap: 10px; align-items: center; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.udfa-bonus input { accent-color: var(--pop); width: 160px; }
+.udfa-bonus b { color: var(--text); font-size: 18px; }
+.urow { grid-template-columns: 34px 34px minmax(150px, 1fr) 90px 150px; padding: 5px 12px; }
+.urow[data-dim='true'] { opacity: 0.4; }
+.urow-state { justify-self: end; font-size: 14px; }
+
+@media (max-width: 1180px) {
+  .warroom { grid-template-columns: 1fr; overflow-y: auto; }
+  .draft { overflow-y: auto; }
+}

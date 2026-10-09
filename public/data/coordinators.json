@@ -1,0 +1,418 @@
+{
+  "source": "Wikipedia NFL team staff templates",
+  "asOf": "2026-10-09",
+  "headCoaches": {
+    "ATL": "Kevin Stefanski",
+    "ARI": "Mike LaFleur",
+    "MIA": "Jeff Hafley",
+    "NYJ": "Aaron Glenn",
+    "LAR": "Sean McVay",
+    "WAS": "Dan Quinn",
+    "LAC": "Jim Harbaugh",
+    "DET": "Dan Campbell",
+    "IND": "Shane Steichen",
+    "CLE": "Todd Monken",
+    "LV": "Klint Kubiak",
+    "CIN": "Zac Taylor",
+    "PHI": "Nick Sirianni",
+    "NYG": "John Harbaugh",
+    "SEA": "Mike Macdonald",
+    "MIN": "Kevin O'Connell",
+    "DEN": "Sean Payton",
+    "NO": "Kellen Moore",
+    "NE": "Mike Vrabel",
+    "TEN": "Robert Saleh",
+    "CAR": "Dave Canales",
+    "CHI": "Ben Johnson",
+    "DAL": "Brian Schottenheimer",
+    "GB": "Matt LaFleur",
+    "TB": "Todd Bowles",
+    "PIT": "Mike McCarthy",
+    "KC": "Andy Reid",
+    "JAX": "Liam Coen",
+    "SF": "Kyle Shanahan",
+    "HOU": "DeMeco Ryans",
+    "BUF": "Joe Brady",
+    "BAL": "Jesse Minter"
+  },
+  "coordinators": [
+    {
+      "id": "atl-oc-tommy-rees",
+      "name": "Tommy Rees",
+      "team": "ATL",
+      "role": "OC"
+    },
+    {
+      "id": "atl-dc-jeff-ulbrich",
+      "name": "Jeff Ulbrich",
+      "team": "ATL",
+      "role": "DC"
+    },
+    {
+      "id": "ari-oc-nathaniel-hackett",
+      "name": "Nathaniel Hackett",
+      "team": "ARI",
+      "role": "OC"
+    },
+    {
+      "id": "ari-dc-nick-rallis",
+      "name": "Nick Rallis",
+      "team": "ARI",
+      "role": "DC"
+    },
+    {
+      "id": "mia-oc-bobby-slowik",
+      "name": "Bobby Slowik",
+      "team": "MIA",
+      "role": "OC"
+    },
+    {
+      "id": "mia-dc-sean-duggan",
+      "name": "Sean Duggan",
+      "team": "MIA",
+      "role": "DC"
+    },
+    {
+      "id": "nyj-oc-frank-reich",
+      "name": "Frank Reich",
+      "team": "NYJ",
+      "role": "OC"
+    },
+    {
+      "id": "nyj-dc-brian-duker",
+      "name": "Brian Duker",
+      "team": "NYJ",
+      "role": "DC"
+    },
+    {
+      "id": "lar-oc-nathan-scheelhaase",
+      "name": "Nathan Scheelhaase",
+      "team": "LAR",
+      "role": "OC"
+    },
+    {
+      "id": "lar-dc-chris-shula",
+      "name": "Chris Shula",
+      "team": "LAR",
+      "role": "DC"
+    },
+    {
+      "id": "was-oc-david-blough",
+      "name": "David Blough",
+      "team": "WAS",
+      "role": "OC"
+    },
+    {
+      "id": "was-dc-daronte-jones",
+      "name": "Daronte Jones",
+      "team": "WAS",
+      "role": "DC"
+    },
+    {
+      "id": "lac-oc-mike-mcdaniel",
+      "name": "Mike McDaniel",
+      "team": "LAC",
+      "role": "OC"
+    },
+    {
+      "id": "lac-dc-chris-o-leary",
+      "name": "Chris O'Leary",
+      "team": "LAC",
+      "role": "DC"
+    },
+    {
+      "id": "det-oc-drew-petzing",
+      "name": "Drew Petzing",
+      "team": "DET",
+      "role": "OC"
+    },
+    {
+      "id": "det-dc-kelvin-sheppard",
+      "name": "Kelvin Sheppard",
+      "team": "DET",
+      "role": "DC"
+    },
+    {
+      "id": "ind-oc-jim-bob-cooter",
+      "name": "Jim Bob Cooter",
+      "team": "IND",
+      "role": "OC"
+    },
+    {
+      "id": "ind-dc-lou-anarumo",
+      "name": "Lou Anarumo",
+      "team": "IND",
+      "role": "DC"
+    },
+    {
+      "id": "cle-oc-travis-switzer",
+      "name": "Travis Switzer",
+      "team": "CLE",
+      "role": "OC"
+    },
+    {
+      "id": "cle-dc-mike-rutenberg",
+      "name": "Mike Rutenberg",
+      "team": "CLE",
+      "role": "DC"
+    },
+    {
+      "id": "lv-oc-andrew-janocko",
+      "name": "Andrew Janocko",
+      "team": "LV",
+      "role": "OC"
+    },
+    {
+      "id": "lv-dc-rob-leonard",
+      "name": "Rob Leonard",
+      "team": "LV",
+      "role": "DC"
+    },
+    {
+      "id": "cin-oc-dan-pitcher",
+      "name": "Dan Pitcher",
+      "team": "CIN",
+      "role": "OC"
+    },
+    {
+      "id": "cin-dc-al-golden",
+      "name": "Al Golden",
+      "team": "CIN",
+      "role": "DC"
+    },
+    {
+      "id": "phi-oc-sean-mannion",
+      "name": "Sean Mannion",
+      "team": "PHI",
+      "role": "OC"
+    },
+    {
+      "id": "phi-dc-vic-fangio",
+      "name": "Vic Fangio",
+      "team": "PHI",
+      "role": "DC"
+    },
+    {
+      "id": "nyg-oc-matt-nagy",
+      "name": "Matt Nagy",
+      "team": "NYG",
+      "role": "OC"
+    },
+    {
+      "id": "nyg-dc-dennard-wilson",
+      "name": "Dennard Wilson",
+      "team": "NYG",
+      "role": "DC"
+    },
+    {
+      "id": "sea-oc-brian-fleury",
+      "name": "Brian Fleury",
+      "team": "SEA",
+      "role": "OC"
+    },
+    {
+      "id": "sea-dc-aden-durde",
+      "name": "Aden Durde",
+      "team": "SEA",
+      "role": "DC"
+    },
+    {
+      "id": "min-oc-wes-phillips",
+      "name": "Wes Phillips",
+      "team": "MIN",
+      "role": "OC"
+    },
+    {
+      "id": "min-dc-brian-flores",
+      "name": "Brian Flores",
+      "team": "MIN",
+      "role": "DC"
+    },
+    {
+      "id": "den-oc-davis-webb",
+      "name": "Davis Webb",
+      "team": "DEN",
+      "role": "OC"
+    },
+    {
+      "id": "den-dc-vance-joseph",
+      "name": "Vance Joseph",
+      "team": "DEN",
+      "role": "DC"
+    },
+    {
+      "id": "no-oc-doug-nussmeier",
+      "name": "Doug Nussmeier",
+      "team": "NO",
+      "role": "OC"
+    },
+    {
+      "id": "no-dc-brandon-staley",
+      "name": "Brandon Staley",
+      "team": "NO",
+      "role": "DC"
+    },
+    {
+      "id": "ne-oc-josh-mcdaniels",
+      "name": "Josh McDaniels",
+      "team": "NE",
+      "role": "OC"
+    },
+    {
+      "id": "ne-dc-zak-kuhr",
+      "name": "Zak Kuhr",
+      "team": "NE",
+      "role": "DC"
+    },
+    {
+      "id": "ten-oc-brian-daboll",
+      "name": "Brian Daboll",
+      "team": "TEN",
+      "role": "OC"
+    },
+    {
+      "id": "ten-dc-gus-bradley",
+      "name": "Gus Bradley",
+      "team": "TEN",
+      "role": "DC"
+    },
+    {
+      "id": "car-oc-brad-idzik",
+      "name": "Brad Idzik",
+      "team": "CAR",
+      "role": "OC"
+    },
+    {
+      "id": "car-dc-ejiro-evero",
+      "name": "Ejiro Evero",
+      "team": "CAR",
+      "role": "DC"
+    },
+    {
+      "id": "chi-oc-press-taylor",
+      "name": "Press Taylor",
+      "team": "CHI",
+      "role": "OC"
+    },
+    {
+      "id": "chi-dc-dennis-allen",
+      "name": "Dennis Allen",
+      "team": "CHI",
+      "role": "DC"
+    },
+    {
+      "id": "dal-oc-klayton-adams",
+      "name": "Klayton Adams",
+      "team": "DAL",
+      "role": "OC"
+    },
+    {
+      "id": "dal-dc-christian-parker",
+      "name": "Christian Parker",
+      "team": "DAL",
+      "role": "DC"
+    },
+    {
+      "id": "gb-oc-adam-stenavich",
+      "name": "Adam Stenavich",
+      "team": "GB",
+      "role": "OC"
+    },
+    {
+      "id": "gb-dc-jonathan-gannon",
+      "name": "Jonathan Gannon",
+      "team": "GB",
+      "role": "DC"
+    },
+    {
+      "id": "tb-oc-zac-robinson",
+      "name": "Zac Robinson",
+      "team": "TB",
+      "role": "OC"
+    },
+    {
+      "id": "pit-oc-brian-angelichio",
+      "name": "Brian Angelichio",
+      "team": "PIT",
+      "role": "OC"
+    },
+    {
+      "id": "pit-dc-patrick-graham",
+      "name": "Patrick Graham",
+      "team": "PIT",
+      "role": "DC"
+    },
+    {
+      "id": "kc-oc-eric-bieniemy",
+      "name": "Eric Bieniemy",
+      "team": "KC",
+      "role": "OC"
+    },
+    {
+      "id": "kc-dc-steve-spagnuolo",
+      "name": "Steve Spagnuolo",
+      "team": "KC",
+      "role": "DC"
+    },
+    {
+      "id": "jax-oc-grant-udinski",
+      "name": "Grant Udinski",
+      "team": "JAX",
+      "role": "OC"
+    },
+    {
+      "id": "jax-dc-anthony-campanile",
+      "name": "Anthony Campanile",
+      "team": "JAX",
+      "role": "DC"
+    },
+    {
+      "id": "sf-oc-klay-kubiak",
+      "name": "Klay Kubiak",
+      "team": "SF",
+      "role": "OC"
+    },
+    {
+      "id": "sf-dc-raheem-morris",
+      "name": "Raheem Morris",
+      "team": "SF",
+      "role": "DC"
+    },
+    {
+      "id": "hou-oc-nick-caley",
+      "name": "Nick Caley",
+      "team": "HOU",
+      "role": "OC"
+    },
+    {
+      "id": "hou-dc-matt-burke",
+      "name": "Matt Burke",
+      "team": "HOU",
+      "role": "DC"
+    },
+    {
+      "id": "buf-oc-pete-carmichael",
+      "name": "Pete Carmichael",
+      "team": "BUF",
+      "role": "OC"
+    },
+    {
+      "id": "buf-dc-jim-leonhard",
+      "name": "Jim Leonhard",
+      "team": "BUF",
+      "role": "DC"
+    },
+    {
+      "id": "bal-oc-declan-doyle",
+      "name": "Declan Doyle",
+      "team": "BAL",
+      "role": "OC"
+    },
+    {
+      "id": "bal-dc-anthony-weaver",
+      "name": "Anthony Weaver",
+      "team": "BAL",
+      "role": "DC"
+    }
+  ]
+}

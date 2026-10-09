@@ -1,0 +1,148 @@
+.reveal {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  padding: 20px;
+  text-align: center;
+  cursor: default;
+}
+
+/* Light rays turning behind the card. */
+.reveal-rays {
+  --c: rgb(var(--accent-rgb) / 0.16);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1100px;
+  height: 1100px;
+  margin: -600px 0 0 -550px;
+  background: repeating-conic-gradient(from 0deg, var(--c) 0deg 6deg, transparent 6deg 18deg);
+  mask-image: radial-gradient(circle, #000 0%, transparent 60%);
+  animation: rays 28s linear infinite;
+  pointer-events: none;
+}
+.reveal-rays[data-tier='gold'] { --c: rgba(255, 210, 90, 0.18); }
+.reveal-rays[data-tier='elite'] { --c: rgb(var(--pop-rgb) / 0.22); }
+@keyframes rays { to { transform: rotate(360deg); } }
+
+.reveal-stamp {
+  position: relative;
+  isolation: isolate;
+  padding: 6px 24px;
+  font-size: 30px;
+  color: var(--ink);
+}
+/* The skewed plate sits behind upright (italic) text, which stays crisp. */
+.reveal-stamp::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--pop);
+  transform: skewX(-12deg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.reveal-stage { perspective: 1200px; }
+
+/* ─── The card ────────────────────────────────────────────────────────────── */
+
+.pcard {
+  --c1: #c99a6b;
+  --c2: #6b4122;
+  --ink: #1a0f06;
+  position: relative;
+  width: 280px;
+  height: 392px;
+  transform-style: preserve-3d;
+}
+.pcard[data-tier='silver'] { --c1: #f1f5f6; --c2: #8a979c; --ink: #10161a; }
+.pcard[data-tier='gold'] { --c1: #ffe39a; --c2: #b37a10; --ink: #1d1300; }
+.pcard[data-tier='elite'] { --c1: color-mix(in srgb, var(--pop) 55%, white); --c2: var(--team-hi); --ink: var(--ink); }
+
+.pcard-front, .pcard-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  clip-path: polygon(10% 0, 90% 0, 100% 8%, 100% 92%, 90% 100%, 10% 100%, 0 92%, 0 8%);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+.pcard-back {
+  display: grid;
+  place-items: center;
+  transform: rotateY(180deg);
+  background: repeating-linear-gradient(-60deg, transparent 0 14px, rgba(255, 255, 255, 0.05) 14px 16px), linear-gradient(160deg, var(--team-hi), rgb(var(--deep-rgb)));
+}
+.pcard-back .display { font-size: 120px; color: rgb(var(--accent-rgb) / 0.35); }
+
+.pcard-front {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  padding: 22px 22px 18px;
+  color: var(--ink);
+  background:
+    radial-gradient(120% 70% at 50% 30%, rgba(255, 255, 255, 0.45), transparent 60%),
+    linear-gradient(165deg, var(--c1), var(--c2));
+  overflow: hidden;
+}
+.pcard-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.pcard-role { display: grid; line-height: 0.85; text-align: left; }
+.pcard-role .display { font-size: 64px; }
+.pcard-role .pcard-pos { font-size: 24px; letter-spacing: 0.04em; }
+.pcard-brand { font-size: 18px; opacity: 0.7; }
+.pcard-art { display: grid; place-items: end center; margin-top: -24px; }
+.pcard-art .art { clip-path: none; background: transparent !important; }
+.pcard-art .art-body { fill: rgba(0, 0, 0, 0.55); }
+.pcard-art .art-initials { display: none; }
+.pcard-name {
+  margin: 0 -22px;
+  padding: 6px 10px 4px;
+  font-size: 30px;
+  background: rgba(0, 0, 0, 0.82);
+  color: #fff;
+}
+.pcard-meta { display: flex; justify-content: center; gap: 12px; margin-top: 8px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* A strip of light that crosses the card once it lands. */
+.pcard-foil {
+  position: absolute;
+  inset: -40% auto -40% -60%;
+  width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  transform: skewX(-20deg);
+  animation: foil 2.6s 0.9s ease-in-out infinite;
+  mix-blend-mode: overlay;
+}
+@keyframes foil {
+  0% { left: -60%; }
+  45%, 100% { left: 130%; }
+}
+/* Elite cards are holographic. */
+.pcard[data-tier='elite'] .pcard-front::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(from 0deg, #ff6ad5, #c774e8, #8795e8, #94d0ff, var(--accent), #f6ff8a, #ff6ad5);
+  mix-blend-mode: color-dodge;
+  opacity: 0.28;
+  animation: holo 6s linear infinite;
+  pointer-events: none;
+}
+@keyframes holo { to { filter: hue-rotate(360deg); } }
+
+.reveal-copy { position: relative; display: grid; gap: 6px; max-width: 560px; }
+.reveal-head { font-size: 34px; }
+.reveal-detail { color: var(--text-soft); }
+.reveal-delta { font-size: 30px; margin-top: 4px; }
+.reveal-delta span { font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.reveal-hint { display: flex; gap: 8px; justify-content: center; align-items: center; font-size: 13px; margin-top: 8px; }
+
+@media (max-width: 720px) {
+  .pcard { width: 220px; height: 308px; }
+  .pcard-role .display { font-size: 48px; }
+  .pcard-art .art { width: 130px !important; height: 130px !important; font-size: 130px !important; }
+  .pcard-name { font-size: 24px; }
+  .reveal-head { font-size: 26px; }
+  .reveal-rays { width: 700px; height: 700px; margin: -380px 0 0 -350px; }
+}

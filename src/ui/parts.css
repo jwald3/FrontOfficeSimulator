@@ -1,0 +1,109 @@
+/* ─── Depth chart badge ─────────────────────────────────────────────────── */
+
+.dbadge {
+  --c1: color-mix(in srgb, var(--dim) 80%, var(--muted));
+  --c2: color-mix(in srgb, var(--dim) 55%, black);
+  display: grid;
+  place-items: center;
+  align-content: center;
+  color: var(--ink);
+  background: linear-gradient(150deg, var(--c1), var(--c2));
+  clip-path: polygon(18% 0, 100% 0, 82% 100%, 0 100%);
+  flex: none;
+  /* Own compositing layer: otherwise Chromium drops the clip-path when the card
+     repaints for a neighbouring button's hover animation, flashing a rectangle. */
+  will-change: transform;
+}
+.dbadge[data-depth='0'] { color: var(--text-soft); }
+.dbadge[data-depth='1'] { --c1: var(--pop); --c2: color-mix(in srgb, var(--pop) 50%, var(--team-hi)); }
+.dbadge[data-depth='2'] { --c1: #e6eef0; --c2: #9aa8ad; }
+.dbadge[data-depth='3'] { --c1: #c99a6b; --c2: #8a5a33; }
+.dbadge-num { font-family: var(--font-display); font-weight: 800; font-style: italic; line-height: 0.85; }
+.dbadge-lbl { font-family: var(--font-display); font-weight: 700; letter-spacing: 0.1em; opacity: 0.75; text-transform: uppercase; }
+.dbadge-sm { width: 44px; height: 34px; }
+.dbadge-sm .dbadge-num { font-size: 16px; }
+.dbadge-sm .dbadge-lbl { font-size: 8px; }
+.dbadge-md { width: 60px; height: 48px; }
+.dbadge-md .dbadge-num { font-size: 22px; }
+.dbadge-md .dbadge-lbl { font-size: 9px; }
+.dbadge-lg { width: 104px; height: 88px; }
+.dbadge-lg .dbadge-num { font-size: 40px; }
+.dbadge-lg .dbadge-lbl { font-size: 12px; }
+
+/* ─── Player art ──────────────────────────────────────────────────────────── */
+
+.art {
+  --u: var(--team-hi);
+  position: relative;
+  flex: none;
+  overflow: hidden;
+  background:
+    linear-gradient(160deg, color-mix(in oklab, var(--u) 75%, white 0%), color-mix(in oklab, var(--u) 40%, black)),
+    var(--u);
+  clip-path: polygon(0 0, 100% 0, 100% 82%, 82% 100%, 0 100%);
+}
+.art[data-unit='def'] { --u: var(--team); }
+.art[data-unit='st'] { --u: color-mix(in srgb, var(--dim) 70%, black); }
+.art svg { position: absolute; inset: 14% 0 0; width: 100%; height: 86%; }
+.art-body { fill: rgb(var(--deep-rgb) / 0.55); }
+.art-initials {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding-bottom: 0.18em;
+  font-size: 0.5em;
+  color: rgb(var(--accent-rgb) / 0.22);
+  letter-spacing: -0.04em;
+}
+.art-photo {
+  position: absolute;
+  inset: 4% 0 0;
+  width: 100%;
+  height: 96%;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.art[data-photo='true'] .art-photo { opacity: 1; }
+.art[data-photo='true'] svg,
+.art[data-photo='true'] .art-initials { visibility: hidden; }
+
+/* ─── Pick chooser: picks to toggle into a trade package ──────────────────── */
+
+.pickgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; }
+.pick {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  font-size: 13px;
+  text-align: left;
+}
+.pick .num { color: var(--muted); }
+.pick[aria-pressed='true'] { background: rgb(var(--team-hi-rgb) / 0.5); border-color: var(--accent); }
+.pick[aria-pressed='true'] .num { color: var(--pop); }
+.pick:disabled { opacity: 0.35; cursor: not-allowed; }
+.pickchooser { display: grid; gap: 8px; }
+.pickchooser .pickgrid { max-height: 220px; overflow-y: auto; padding-right: 4px; }
+.pickchooser-total { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; font-size: 13px; }
+.pickchooser-total b { font-size: 16px; }
+
+/* ─── Pick chips in trades ────────────────────────────────────────────────── */
+
+/* A filled chip, straight-edged so rows of them sit flush with the text around
+   them. Filled, not outlined, so its edges stay crisp. */
+.chip {
+  display: inline-block;
+  padding: 3px 9px;
+  background: rgb(var(--accent-rgb) / 0.1);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}

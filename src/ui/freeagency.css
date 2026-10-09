@@ -1,0 +1,164 @@
+.fa {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 24px 16px;
+  min-height: 0;
+}
+.fa-head { align-items: center; }
+.fa-body { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.fa-split { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(400px, 480px); gap: 18px; }
+
+.badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  margin-left: 6px;
+  padding: 0 5px;
+  background: var(--alert);
+  color: #1a0500;
+  font-size: 12px;
+  border-radius: 9px;
+  font-style: normal;
+}
+
+/* ─── Wave clock ──────────────────────────────────────────────────────────── */
+
+.clock {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px 10px 26px;
+  margin-left: auto;
+  background: linear-gradient(90deg, rgb(var(--team-rgb) / 0.85), rgb(var(--deep-rgb) / 0.85));
+}
+.clock-waves { display: flex; gap: 4px; }
+.clock-waves i { width: 18px; height: 8px; background: rgba(255, 255, 255, 0.12); transform: skewX(-20deg); }
+.clock-waves i[data-state='done'] { background: var(--accent); }
+.clock-waves i[data-state='now'] { background: var(--pop); box-shadow: 0 0 10px var(--pop); }
+.clock-name { font-size: 24px; }
+.clock-blurb { font-size: 12px; }
+
+/* ─── Market rows ─────────────────────────────────────────────────────────── */
+
+.check { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+.check input { accent-color: var(--pop); }
+.mrow { grid-template-columns: 38px minmax(150px, 1fr) 44px 90px 130px; }
+.mrow[data-status='signed-elsewhere'], .mrow[data-status='uninterested'], .mrow[data-status='walked'], .mrow[data-status='retained'] { opacity: 0.45; }
+.mrow-status {
+  justify-self: end;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.mrow-status[data-status='signed'] { color: var(--pop); }
+.mrow-status[data-status='uninterested'], .mrow-status[data-status='walked'] { color: var(--alert); }
+
+/* ─── Inbox ───────────────────────────────────────────────────────────────── */
+
+.inbox { flex: 1; display: grid; align-content: start; gap: 12px; max-width: 980px; }
+.inbox-empty { padding: 40px 0; }
+.sheet { padding: 18px 30px 20px; background: var(--panel-hi); --slab-edge: rgba(255, 91, 58, 0.5); }
+.sheet-eyebrow { color: var(--alert); margin-bottom: 10px; }
+.sheet-body { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center; }
+.sheet-title { font-size: 32px; }
+.sheet-terms { font-size: 18px; margin: 4px 0; }
+.sheet-actions { display: grid; gap: 8px; }
+.sheet-done { font-size: 13px; padding: 4px 2px; }
+
+/* Trade offers in the inbox: block offers in blue, unsolicited calls in volt. */
+.toffer { padding: 14px 16px; background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--cool); display: grid; gap: 8px; }
+.inbox-offer { grid-template-columns: auto minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 14px 18px; }
+.inbox-offer[data-kind='call'] { border-left-color: var(--pop); }
+.inbox-offer-body { display: grid; gap: 6px; min-width: 0; }
+.inbox-offer-kind { color: var(--muted); }
+.inbox-offer[data-kind='call'] .inbox-offer-kind { color: var(--pop); }
+.inbox-offer-title { font-size: 24px; }
+.inbox-offer-side { display: grid; justify-items: end; gap: 8px; font-size: 13px; }
+.inbox-history { display: grid; gap: 4px; margin-top: 10px; }
+.inbox-history .eyebrow { margin-bottom: 4px; }
+.inbox-past { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.5fr) auto; gap: 12px; padding: 6px 12px; background: rgb(var(--panel-rgb) / 0.5); font-size: 13px; }
+.inbox-past-what { font-weight: 600; }
+.inbox-past-outcome { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.inbox-past[data-outcome='accepted'] .inbox-past-outcome { color: var(--pop); }
+.inbox-past[data-outcome='pulled'] .inbox-past-outcome { color: var(--alert); }
+
+/* The offer review card. */
+.review { width: min(620px, 94vw); max-height: 92vh; overflow-y: auto; }
+.review-eyebrow { color: var(--accent); margin-bottom: 6px; }
+.review .confirm-title { font-size: 32px; margin-bottom: 8px; }
+.review-line { margin: 0 0 16px; color: var(--text-soft); line-height: 1.5; }
+.review-sides { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.review-asset { font-weight: 600; margin-top: 4px; }
+.review-cap { padding: 14px 16px; border: 1px solid var(--line-hi); background: rgb(var(--shade-rgb) / 0.4); display: grid; gap: 2px; }
+.review-cap-head { font-size: 30px; margin-top: 4px; }
+.review-cap-sub { font-size: 12px; margin-bottom: 8px; }
+.review-cap-row { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-top: 1px solid var(--line); font-size: 13px; }
+.review-reply { margin: 14px 0 0; padding: 8px 12px; border-left: 3px solid var(--pop); background: rgb(var(--pop-rgb) / 0.08); }
+.review-note { margin: 12px 0 0; font-size: 13px; }
+.review-actions { flex-wrap: wrap; }
+@media (max-width: 560px) {
+  .inbox-offer { grid-template-columns: auto minmax(0, 1fr); }
+  .inbox-offer-side { grid-column: 1 / -1; justify-items: start; }
+  .inbox-past { grid-template-columns: 1fr; gap: 2px; }
+  .review-sides { grid-template-columns: 1fr; }
+}
+
+/* ─── Trade finder ────────────────────────────────────────────────────────── */
+
+.toffer-picks { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+
+
+.finder { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.finder-split { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(340px, 440px); gap: 14px; }
+.trow { grid-template-columns: 34px minmax(130px, 1fr) 44px 80px; padding: 5px 12px; }
+.finder-deal {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 20px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  overflow-y: auto;
+}
+.finder-empty { margin: auto; text-align: center; }
+.deal-head { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.deal-name { font-size: 30px; }
+.deal-actions { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.deal-actions .muted { display: inline-flex; gap: 8px; align-items: center; font-size: 13px; }
+.deal-actions .submit { --c: var(--pop); }
+
+@media (max-width: 1180px) {
+  .fa { overflow-y: auto; }
+  .fa-split, .hub, .finder-split { grid-template-columns: 1fr; }
+  .fa-head { flex-wrap: wrap; }
+}
+
+.deal-locked { margin-top: 4px; font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--alert); }
+
+/* Flagging an offer for the editors. */
+.flag-open { margin-top: 12px; padding: 0; background: none; border: 0; font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.flag-open:hover { color: var(--gold); }
+.flag-panel { margin-top: 12px; padding: 12px 14px; display: grid; gap: 8px; border: 1px solid var(--line-hi); border-left: 3px solid var(--gold); background: rgba(242, 201, 76, 0.05); }
+.flag-panel .eyebrow { color: var(--gold); }
+.flag-panel .seg { justify-self: start; }
+.flag-panel textarea { background: rgba(255, 255, 255, 0.04); border: 1px solid var(--line); color: var(--text); font: inherit; font-size: 14px; padding: 8px 10px; resize: vertical; }
+.flag-panel textarea:focus { outline: none; border-color: var(--accent); }
+.flag-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.flag-actions .btn { padding: 7px 16px; font-size: 14px; }
+.flag-error { margin: 0; font-size: 13px; }
+.flag-done { margin: 12px 0 0; font-size: 13px; color: var(--gold); }
+
+/* Countering an offer: the picks we want from them. */
+.counter-panel { margin-top: 14px; padding: 12px 14px; display: grid; gap: 10px; border: 1px solid var(--line-hi); border-left: 3px solid var(--accent); background: rgb(var(--accent-rgb) / 0.04); }
+.counter-panel .eyebrow { color: var(--accent); }
+.counter-actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+.counter-actions .muted { margin-right: auto; font-size: 13px; }
+.counter-actions .btn { padding: 7px 16px; font-size: 14px; }
+.deal-capped { color: var(--gold); }
+.counter-note { margin: 0; font-size: 13px; }

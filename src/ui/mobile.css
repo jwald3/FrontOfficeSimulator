@@ -1,0 +1,144 @@
+/*
+ * Phone layout. Rules are prefixed with .app so they win over each screen's own
+ * stylesheet regardless of load order.
+ */
+
+/* Touch devices: no keyboard, so no key hints. */
+@media (hover: none) {
+  .app .key, .app .hints { display: none; }
+}
+.touch-only { display: none; }
+@media (hover: none) {
+  .app .touch-only { display: inline; }
+  .app .pointer-only { display: none; }
+}
+
+@media (max-width: 720px) {
+  /* The page scrolls as one column instead of side-by-side panes. */
+  .app .game { grid-template-rows: auto auto minmax(0, 1fr) auto; }
+  .app .stage { overflow-y: auto; }
+  .app .stage-inner { height: auto; min-height: 100%; }
+  .app .inhouse,
+  .app .resign,
+  .app .fa-split,
+  .app .warroom,
+  .app .finder-split {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+  .app .inhouse, .app .fa, .app .draft, .app .summary { padding: 12px 14px 20px; gap: 14px; height: auto; }
+  .app .board, .app .side, .app .fa-body, .app .finder, .app .clockside, .app .futures, .app .udfa { min-height: auto; }
+  .app .rows { max-height: 52vh; flex: none; }
+  .app .card, .app .finder-deal { overflow: visible; }
+  .app .side { min-width: 0; }
+
+  /* ─── Top bar: brand + current phase only ─── */
+  .app .topbar { gap: 10px; padding: 0 14px; }
+  .app .tb-brand { font-size: 18px; white-space: nowrap; flex: none; }
+  .app .tb-brand .display:not(.tb-team) { display: none; }
+  .app .tb-mode { display: none; }
+  .app .tb-depth span { display: none; }
+  .app .tb-depth { padding: 6px 8px; }
+  .app .phase-tabs { justify-content: flex-end; min-width: 0; }
+  .app .phase-tab { padding: 12px 6px 10px; }
+  .app .phase-tab:not([data-state='now']) .pt-name { display: none; }
+  .app .phase-tab[data-state='now'] .pt-full { display: none; }
+  .app .phase-tab[data-state='now'] .pt-short { display: inline; }
+  .app .phase-tab:not([data-state='now']) { padding: 12px 3px 10px; }
+
+  /* ─── Cap bar: the headline number, then a swipeable strip ─── */
+  .app .capbug { margin: 10px 14px 0; }
+  .app .cb-main { flex: none; min-width: 0; padding: 8px 16px 8px 14px; }
+  .app .cb-cell { flex: none; }
+  .app .cb-big { font-size: 28px; }
+  .app .cb-cell { min-width: 96px; padding: 8px 12px; }
+  .app .cb-val { font-size: 18px; }
+
+  /* ─── Headers and tools ─── */
+  .app .board-head { flex-wrap: wrap; align-items: flex-start; }
+  .app .board-head > .btn { width: 100%; justify-content: center; }
+  .app .board-head-actions { width: 100%; }
+  .app .board-head-actions .btn { flex: 1 1 100%; justify-content: center; }
+  .app .board-title { font-size: 32px; }
+  .app .board-tools { gap: 8px; }
+  .app .board-tools .search { min-width: 0; flex-basis: 100%; }
+  .app .seg { max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+  .app .seg-btn { padding: 8px 12px; white-space: nowrap; }
+  .app .rows-head { display: none; }
+  /* No column headers on phones: sort from the dropdown, and show age in the row. */
+  .app .sort { display: flex; }
+  .app .meta-age { display: inline; }
+
+  /* ─── Rows: four essentials each ─── */
+  .app .row { gap: 10px; padding: 7px 10px; }
+  .app .row:not(.xrow):not(.mrow):not(.frow):not(.trow):not(.brow):not(.urow):not(.srow) {
+    grid-template-columns: 36px minmax(0, 1fr) 40px 80px;
+  }
+  .app .row:not(.xrow):not(.mrow):not(.frow):not(.trow):not(.brow):not(.urow):not(.srow) > :nth-child(n + 5) { display: none; }
+  .app .xrow, .app .mrow { grid-template-columns: 36px minmax(0, 1fr) 40px 84px; }
+  .app .xrow > :nth-child(5), .app .mrow > :nth-child(5) { display: none; }
+  .app .frow { grid-template-columns: 36px minmax(0, 1fr) 40px auto; }
+  .app .frow > :nth-child(4) { display: none; }
+  .app .trow { grid-template-columns: 34px minmax(0, 1fr) 40px 70px; }
+  .app .brow { grid-template-columns: 30px minmax(0, 1fr) 90px; }
+  .app .brow > :nth-child(2), .app .brow > :nth-child(5) { display: none; }
+  .app .urow { grid-template-columns: 30px minmax(0, 1fr) auto; }
+  .app .urow > :nth-child(2), .app .urow > :nth-child(4) { display: none; }
+  .app .row-name strong { font-size: 14px; }
+
+  /* ─── Player card and negotiation ─── */
+  .app .card { padding: 16px 14px; }
+  .app .card-hero, .app .neg-hero, .app .prospect-hero { grid-template-columns: auto 1fr auto; gap: 10px; }
+  .app .card-hero .art { width: 72px !important; height: 72px !important; font-size: 72px !important; }
+  .app .dbadge-lg { width: 72px; height: 62px; }
+  .app .dbadge-lg .dbadge-num { font-size: 28px; }
+  .app .card-name, .app .neg-hero .card-name, .app .prospect-name { font-size: 26px; }
+  .app .field { grid-template-columns: 1fr; gap: 6px; }
+  .app .neg-impact { grid-template-columns: 1fr 1fr; }
+  .app .neg-impact > :last-child { grid-column: 1 / -1; }
+  .app .tags { grid-template-columns: 1fr; }
+  .app .ledger td, .app .ledger th { padding: 4px 3px; font-size: 13px; }
+
+  /* ─── Free agency, trades, draft ─── */
+  .app .clock { margin-left: 0; width: 100%; padding: 10px 16px; flex-wrap: wrap; }
+  .app .sheet { padding: 16px 18px; }
+  .app .sheet-body { grid-template-columns: 1fr; }
+  .app .sheet-actions { grid-template-columns: 1fr 1fr; }
+  .app .pickgrid { grid-template-columns: 1fr 1fr; }
+  .app .otc-banner { font-size: 20px; }
+  /* On the clock comes first: it is what you act on. */
+  .app .warroom .clockside { order: -1; }
+  .app .feed { max-height: 30vh; }
+  .app .recap { grid-template-columns: 1fr; }
+  .app .classcard { padding: 12px 18px; gap: 10px; grid-template-columns: auto 1fr auto; }
+  .app .classcard .art { display: none; }
+
+  /* ─── Overlays ─── */
+  .app .outcome-card { padding: 44px 22px 24px; min-width: 0; width: 92vw; }
+  .app .outcome-head { font-size: 30px; }
+  .app .outcome-delta { font-size: 40px; }
+  .app .confirm { padding: 22px 20px; }
+  .app .confirm-title { font-size: 28px; }
+  .app .confirm-actions { flex-direction: column-reverse; }
+  .app .confirm-actions .btn { justify-content: center; }
+
+  /* ─── Title flow ─── */
+  .app .menu { padding: 20px 16px; gap: 0; overflow-y: auto; }
+  .app .menu-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .app .wordmark:not(.wordmark-big) { flex-wrap: nowrap; }
+  .app .wordmark:not(.wordmark-big) .display { font-size: 26px; white-space: nowrap; }
+  .app .menu-item { padding: 10px 16px; }
+  .app .menu-item[data-active='true'] { padding-left: 22px; }
+  .app .menu-card { padding: 20px 22px; }
+  .app .setup, .app .about { --pad-b: 22px; padding: 22px 16px var(--pad-b); gap: 20px; }
+  .app .challenge-entry { flex-direction: column; }
+  .app .choice { padding: 16px 22px; }
+
+  /* ─── Summary ─── */
+  .app .verdict { padding: 22px 18px; gap: 18px; clip-path: none; }
+  .app .grade { width: 150px; height: 136px; font-size: 100px; }
+  .app .share-code { font-size: 34px; }
+  .app .sum-grid { grid-template-columns: minmax(0, 1fr); }
+}

@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "coach": {
+    "coordinatorIds": [
+      "atl-oc-tommy-rees",
+      "atl-dc-jeff-ulbrich",
+      "ari-oc-nathaniel-hackett",
+      "ari-dc-nick-rallis",
+      "mia-oc-bobby-slowik",
+      "mia-dc-sean-duggan",
+      "nyj-oc-frank-reich",
+      "nyj-dc-brian-duker",
+      "lar-oc-nathan-scheelhaase",
+      "lar-dc-chris-shula",
+      "was-oc-david-blough",
+      "was-dc-daronte-jones",
+      "lac-oc-mike-mcdaniel",
+      "lac-dc-chris-o-leary",
+      "det-oc-drew-petzing",
+      "det-dc-kelvin-sheppard",
+      "ind-oc-jim-bob-cooter",
+      "ind-dc-lou-anarumo",
+      "cle-oc-travis-switzer",
+      "cle-dc-mike-rutenberg",
+      "lv-oc-andrew-janocko",
+      "lv-dc-rob-leonard",
+      "cin-oc-dan-pitcher",
+      "cin-dc-al-golden",
+      "phi-oc-sean-mannion",
+      "phi-dc-vic-fangio",
+      "nyg-oc-matt-nagy",
+      "nyg-dc-dennard-wilson",
+      "sea-oc-brian-fleury",
+      "sea-dc-aden-durde",
+      "min-oc-wes-phillips",
+      "min-dc-brian-flores",
+      "den-oc-davis-webb",
+      "den-dc-vance-joseph",
+      "no-oc-doug-nussmeier",
+      "no-dc-brandon-staley",
+      "ne-oc-josh-mcdaniels",
+      "ne-dc-zak-kuhr",
+      "ten-oc-brian-daboll",
+      "ten-dc-gus-bradley",
+      "car-oc-brad-idzik",
+      "car-dc-ejiro-evero",
+      "chi-oc-press-taylor",
+      "chi-dc-dennis-allen",
+      "dal-oc-klayton-adams",
+      "dal-dc-christian-parker",
+      "gb-oc-adam-stenavich",
+      "gb-dc-jonathan-gannon",
+      "tb-oc-zac-robinson",
+      "pit-oc-brian-angelichio",
+      "pit-dc-patrick-graham",
+      "kc-oc-eric-bieniemy",
+      "kc-dc-steve-spagnuolo",
+      "jax-oc-grant-udinski",
+      "jax-dc-anthony-campanile",
+      "sf-oc-klay-kubiak",
+      "sf-dc-raheem-morris",
+      "hou-oc-nick-caley",
+      "hou-dc-matt-burke",
+      "buf-oc-pete-carmichael",
+      "buf-dc-jim-leonhard",
+      "bal-oc-declan-doyle",
+      "bal-dc-anthony-weaver"
+    ],
+    "manual": []
+  },
+  "market": {
+    "calls": {
+      "otc-11001": {
+        "call": "stays",
+        "reason": ""
+      }
+    }
+  },
+  "depth": {
+    "spots": {
+      "otc-10055": {
+        "slot": "WR",
+        "depth": 1
+      },
+      "otc-11660": {
+        "slot": "WR",
+        "depth": 2
+      },
+      "otc-13160": {
+        "slot": "TE",
+        "depth": 1
+      },
+      "otc-12402": {
+        "slot": "TE",
+        "depth": 2
+      },
+      "otc-8901": {
+        "slot": "WR",
+        "depth": 4
+      },
+      "otc-12014": {
+        "slot": "SWR",
+        "depth": 3
+      },
+      "otc-13009": null,
+      "otc-13451": null
+    }
+  },
+  "untouchable": [
+    "otc-5594",
+    "otc-9465",
+    "otc-10307",
+    "otc-10827",
+    "otc-10844"
+  ],
+  "colors": {
+    "teams": {
+      "BAL": {
+        "pop": "#c9c0f5",
+        "accent": "#9e7c0c"
+      }
+    }
+  }
+}
