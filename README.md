@@ -23,8 +23,8 @@ Team colours live in `src/ui/theme.ts`. Each team sets three colours — its pri
 
 What differs by team:
 
-- **Cap:** only the home team's cap includes a projected rollover (an October estimate from Spotrac). Every other team starts from the league cap and its own dead money, so its effective space is slightly conservative.
-- **Auditing:** the home team's roster was checked by hand against its official roster and transactions; the other 31 come straight from OverTheCap's contract tables.
+- **Auditing:** the Jets' books (the snapshot's home team) were checked by hand against the team's official roster, its transactions and Spotrac. The other 31 are checked by `npm run data:audit` (`scripts/audit.mjs`) against each team's OverTheCap cap page and nflverse's current rosters: releases, trades, new deals, extensions and changed cap numbers are applied, players on reserve lists stay on the books, and every contract carries its current roster status. Each team's `audit` in the snapshot records what changed, and a test holds every audited team's cap space to OverTheCap's to the dollar.
+- **Cap:** every team's cap includes a projected rollover. The Jets' is Spotrac's October estimate; the others' is their unused 2026 cap space on OverTheCap, which is what rolls over if they don't spend it. Team-specific cap adjustments (OTC's figure minus the league cap) are applied too.
 - **Head coaches** for every team come from Wikipedia's team staff templates (`npm run data:coordinators`), as do the coordinators on the hiring board. A team's own coordinators are internal promotions.
 - **Editorial content:** the shipped editorial choices (re-sign calls, suggested moves, depth chart edits, untouchables, the keep-or-fire case) are mostly about the Jets, so other teams play on the default rules. The game works the same for every team; it's just less curated.
 

@@ -13,8 +13,8 @@ export const HOME_TEAM = 'NYJ'
  * roster, the home team's join the other rosters, its own free agents and rights
  * players are flagged `own`, and its cap figures replace the home team's.
  *
- * Only the home team's cap carries a projected rollover; every other team starts
- * from the league cap and its own dead money.
+ * The home team's cap carries its hand-checked rollover projection; every other
+ * team's adds the rollover scripts/audit.mjs projects from its unused cap.
  */
 export function forTeam(base: Snapshot, team: string): Snapshot {
   const snap = structuredClone(base)
@@ -31,9 +31,9 @@ export function forTeam(base: Snapshot, team: string): Snapshot {
   snap.roster = ours
   for (const p of snap.freeAgents) p.own = p.team === team
   for (const p of snap.rightsPlayers) p.own = p.team === team
-  snap.capLimit = entry.capLimit
+  snap.capLimit = entry.capLimit + (entry.capAdjustment ?? 0) + (entry.rollover ?? 0)
   snap.existingDead = entry.existingDead ?? 0
-  snap.capIncludesRollover = false
+  snap.capIncludesRollover = (entry.rollover ?? 0) > 0
   snap.title = `${base.season} ${entry.fullName} Offseason`
   return snap
 }

@@ -29,13 +29,13 @@ Everything the game knows is in `public/data/`:
 
 | File | What it is | How to rebuild |
 | --- | --- | --- |
-| `offseason-2027.json` | Contracts, cap figures, free agents, rights players, prospects, picks and all 32 teams | No script yet (see below) |
+| `offseason-2027.json` | Contracts, cap figures, free agents, rights players, prospects, picks and all 32 teams | Not from scratch (see below); `npm run data:audit` brings every team's contracts up to date |
 | `depth.json` | Each player's spot on his team's OurLads depth chart | `npm run data:depth` |
 | `headshots.json` | Player id → NFL.com headshot, via nflverse | `npm run data:headshots` |
 | `coordinators.json` | Every team's head coach and coordinators, from Wikipedia | `npm run data:coordinators` |
 | `editorial.json` | Editor choices (see the README's Editorial controls) | The Editorial screen on the dev server |
 
-`offseason-2027.json` was assembled once from public sources and has no build script, so corrections are made by hand for now. Its shape is the `Snapshot` interface in `src/engine/types.ts`; the main parts:
+`offseason-2027.json` was assembled once from public sources. It can't be rebuilt from scratch yet, but `npm run data:audit` (`scripts/audit.mjs`) keeps it current: it checks every team's contracts against its OverTheCap cap page and nflverse's rosters, applies releases, trades, new deals and cap changes, sets dead money and the projected rollover, and records what changed in each team's `audit` (look for `conflicts` there: places the two sources disagree, for a person to check). OTC pages are cached in `.cache/otc` for a day; run with `--dry-run` to see the changes without writing. The Jets' books were audited by hand and are left alone. Its shape is the `Snapshot` interface in `src/engine/types.ts`; the main parts:
 
 - `roster`: the home team's contracts (the Jets', where the data started), with year-by-year base, bonus and other charges, and release and trade dead money. `otherRosters` has every other team's, keyed by team id. `forTeam` in `src/engine/team.ts` swaps these round for whichever team is played.
 - `teams`: id, name, cap figures (`capLimit`, `capSpace`, `existingDead`), positional `needs` from 0 to 1, and QB outlook.

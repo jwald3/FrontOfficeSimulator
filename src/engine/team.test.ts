@@ -25,8 +25,9 @@ describe('playing as any team', () => {
     expect(dallas.otherRosters[HOME_TEAM].map((p) => p.id)).toEqual(home.roster.map((p) => p.id))
     expect(dallas.freeAgents.filter((p) => p.own).every((p) => p.team === 'DAL')).toBe(true)
     expect(dallas.freeAgents.some((p) => p.own)).toBe(true)
-    expect(dallas.capLimit).toBe(dallas.teams.find((t) => t.id === 'DAL')!.capLimit)
-    expect(dallas.capIncludesRollover).toBe(false)
+    const entry = dallas.teams.find((t) => t.id === 'DAL')!
+    expect(dallas.capLimit).toBe(entry.capLimit + (entry.capAdjustment ?? 0) + entry.rollover!)
+    expect(dallas.capIncludesRollover).toBe(true)
     // The home team's view is unchanged, rollover included.
     expect(home.capIncludesRollover).toBe(true)
   })
@@ -58,6 +59,15 @@ describe('playing as any team', () => {
     const atPick = simToUser(run, dallas).run
     const pick = draftOrder(atPick)[atPick.draft!.cursor]
     expect(pick.owner).toBe('DAL')
+  })
+
+  it("matches every audited team's books to OverTheCap: same cap space before the rollover", () => {
+    for (const t of home.teams.filter((x) => x.audit)) {
+      const snap = loadSnapshot(t.id)
+      const run = createRun(snap, { mode: 'genuine', objective: 'balanced', seed: 1 })
+      const space = capSummary(run, snap.rookieScale.slots, snap.minimumRookieBase).totalSpace - (t.rollover ?? 0)
+      expect(Math.abs(space - t.audit!.otcCapSpace!), t.id).toBeLessThan(1)
+    }
   })
 
   it('runs a whole offseason for every team without getting stuck', () => {

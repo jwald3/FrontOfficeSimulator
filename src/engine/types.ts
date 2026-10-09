@@ -119,6 +119,23 @@ export interface RawPick {
   value: number
 }
 
+/** A team's books as checked against OverTheCap and nflverse by scripts/audit.mjs. */
+export interface TeamAudit {
+  checked: string
+  source: string
+  rosterSource: string
+  rolloverBasis: string
+  deadMoney: number
+  voidCharges: number
+  /** OTC's own cap space for the season, before rollover: the engine's figure should match it. */
+  otcCapSpace: number | null
+  released?: string[]
+  tradedAway?: string[]
+  tradedIn?: string[]
+  signed?: string[]
+  updated?: string[]
+}
+
 export interface RawTeam {
   id: string
   name: string
@@ -129,6 +146,12 @@ export interface RawTeam {
   capLimit: number
   /** Dead and void charges already on the books for the coming season. */
   existingDead?: number
+  /** Projected rollover of unused cap from the current season (scripts/audit.mjs). */
+  rollover?: number
+  /** The team's own adjustment to the league cap, e.g. incentive credits or a prior overage (scripts/audit.mjs). */
+  capAdjustment?: number
+  /** What scripts/audit.mjs checked and changed for this team. */
+  audit?: TeamAudit
   needs: Partial<Record<Position, number>>
   simulationIntent?: string
   qbOutlook?: { replacementChance: number; basis?: string }

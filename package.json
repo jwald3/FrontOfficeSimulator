@@ -9,6 +9,7 @@
     "lint": "oxlint",
     "test": "vitest run",
     "preview": "vite preview",
+    "data:audit": "node scripts/audit.mjs",
     "data:coordinators": "node scripts/coordinators.mjs",
     "data:depth": "node scripts/depth.mjs",
     "data:headshots": "node scripts/headshots.mjs"
