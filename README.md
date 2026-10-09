@@ -1,6 +1,6 @@
 # Front Office
 
-Run an NFL team's 2027 offseason as a game: pick any of the 32 teams, decide the head coach's future, release, restructure and shop players, re-sign your own, work free agency and trades, and run the draft — with the presentation of a franchise mode. Every page takes on your team's colours.
+Run a pro football team's 2027 offseason as a game: pick any of the 32 teams, decide the head coach's future, release, restructure and shop players, re-sign your own, work free agency and trades, and run the draft — with the presentation of a franchise mode. Every page takes on your team's colours.
 
 ## Run it
 
