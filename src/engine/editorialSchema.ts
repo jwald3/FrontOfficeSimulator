@@ -22,6 +22,8 @@ export interface FixedColors {
   gold: string
   alert: string
   cool: string
+  /** Money and value going your way: the green to alert's red. */
+  gain: string
 }
 export interface EditorialColors {
   /** By team id: changes to its colours. */
@@ -339,8 +341,8 @@ export function validateEditorial(data: unknown): EditorialData {
       isRecord(d.colors) &&
       (teams === undefined || (isRecord(teams) && Object.values(teams).every((c) => set(c, ['primary', 'accent', 'pop'])))) &&
       (neutral === undefined || set(neutral, ['primary', 'accent', 'pop'])) &&
-      (fixed === undefined || set(fixed, ['gold', 'alert', 'cool']))
-    if (!ok) throw new Error('colors must be #rrggbb values for primary, accent and pop (teams, neutral) or gold, alert and cool (fixed).')
+      (fixed === undefined || set(fixed, ['gold', 'alert', 'cool', 'gain']))
+    if (!ok) throw new Error('colors must be #rrggbb values for primary, accent and pop (teams, neutral) or gold, alert, cool and gain (fixed).')
   }
   if (
     d.draftAdvice !== undefined &&

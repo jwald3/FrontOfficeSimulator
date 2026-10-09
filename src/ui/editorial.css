@@ -113,7 +113,7 @@
 .ed-calls.ed-board li { grid-template-columns: 54px 22px minmax(180px, 1fr) auto 250px minmax(180px, 1fr); }
 .ed-rank { flex: none; width: 54px; min-width: 0; padding: 8px 4px; text-align: center; font-size: 16px; font-weight: 700; }
 .ed-delta { flex: none; font-size: 11px; font-weight: 700; }
-.ed-delta[data-tone='pos'] { color: var(--pop); }
+.ed-delta[data-tone='pos'] { color: var(--gain); }
 .ed-delta[data-tone='neg'] { color: var(--alert); }
 .ed-nudge { display: grid; gap: 2px; }
 .ed-nudge-btn { height: 18px; padding: 0; border: 1px solid var(--line); background: var(--bg-2); color: var(--muted); font-size: 9px; line-height: 1; }
@@ -205,7 +205,7 @@
   opacity: 0.8;
 }
 .ed-stat dd { margin: 0; font-size: 15px; font-weight: 600; }
-.ed-stat dd[data-tone='pos'] { color: var(--pop); }
+.ed-stat dd[data-tone='pos'] { color: var(--gain); }
 .ed-stat dd[data-tone='neg'] { color: var(--alert); }
 .ed-calls .ed-detail-who { gap: 2px; }
 .ed-calls .ed-detail-who b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

@@ -89,7 +89,8 @@
 .menu-card { align-self: center; padding: 28px 34px 30px; }
 .brief-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; margin: 18px 0 26px; }
 .stat-val { font-size: 30px; line-height: 1; }
-.stat-val.hot { color: var(--pop); }
+.stat-val.pos { color: var(--gain); }
+.stat-val.neg { color: var(--alert); }
 .stat-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-top: 4px; }
 .brief-sub { margin-bottom: 10px; }
 .brief-stars { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }

@@ -5,7 +5,7 @@
   grid-template-rows: auto auto 1fr auto;
 }
 
-.pos { color: var(--pop); }
+.pos { color: var(--gain); }
 .neg { color: var(--alert); }
 
 /* ─── Top bar ─────────────────────────────────────────────────────────────── */
@@ -111,7 +111,7 @@
   box-shadow: inset -3px 0 0 var(--pop);
   min-width: 220px;
 }
-.cb-big { font-size: 38px; line-height: 1; color: var(--pop); }
+.cb-big { font-size: 38px; line-height: 1; color: var(--gain); }
 .cb-big.neg { color: var(--alert); }
 .cb-cell {
   display: flex;

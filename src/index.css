@@ -45,6 +45,8 @@
   --gold: #f2c94c;
   --alert: #ff5b3a;
   --cool: #66c7ff;
+  /* Money and value: green is good for you, alert red is bad, whatever the team colours. */
+  --gain: #4fd18b;
 
   --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
   --font-body: 'Barlow', 'Segoe UI', sans-serif;

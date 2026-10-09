@@ -97,7 +97,7 @@ export const TEAM_PALETTES: Record<string, [name: string, hex: string][]> = {
 export const NEUTRAL: ColorSet = { primary: '#1f3b57', accent: '#bcd3ea', pop: '#f2c94c' }
 
 /** Colours with a fixed meaning, the same for every team. */
-export const FIXED: FixedColors = { gold: '#f2c94c', alert: '#ff5b3a', cool: '#66c7ff' }
+export const FIXED: FixedColors = { gold: '#f2c94c', alert: '#ff5b3a', cool: '#66c7ff', gain: '#4fd18b' }
 
 let edits: EditorialColors | undefined
 
@@ -183,6 +183,7 @@ export function themeVars(colors: ColorSet, fixed: FixedColors = FIXED): Record<
     '--gold': fixed.gold,
     '--alert': fixed.alert,
     '--cool': fixed.cool,
+    '--gain': fixed.gain,
   }
 }
 

@@ -202,7 +202,7 @@ function Menu({ snap, hasSave, go }: { snap: Snapshot; hasSave: boolean; go: (s:
       >
         <div className="eyebrow">Front office briefing · {fullName}</div>
         <div className="brief-grid">
-          <Stat label="Effective cap space" value={money(cap.effectiveSpace)} hot />
+          <Stat label="Effective cap space" value={money(cap.effectiveSpace)} tone={cap.effectiveSpace < 0 ? 'neg' : 'pos'} />
           <Stat label="Under contract" value={String(cap.contractCount)} />
           <Stat label="1st-round picks" value={firstRounders.map((p) => `#${p.overall}`).join(' · ') || 'None'} />
           <Stat label="Projected cap" value={money(cap.adjustedCap)} />
@@ -243,10 +243,11 @@ function Menu({ snap, hasSave, go }: { snap: Snapshot; hasSave: boolean; go: (s:
   )
 }
 
-function Stat({ label, value, hot }: { label: string; value: string; hot?: boolean }) {
+/** A briefing figure; money ones take the money colours (green good, red bad), not the team's. */
+function Stat({ label, value, tone }: { label: string; value: string; tone?: 'pos' | 'neg' }) {
   return (
     <div className="stat">
-      <div className={`stat-val num ${hot ? 'hot' : ''}`}>{value}</div>
+      <div className={`stat-val num ${tone ?? ''}`}>{value}</div>
       <div className="stat-lbl">{label}</div>
     </div>
   )

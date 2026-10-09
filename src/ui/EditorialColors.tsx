@@ -40,6 +40,11 @@ const FIXED_FIELDS: { key: keyof FixedColors; label: string; body: string }[] = 
     body: 'Bad news: negative cap space, Fire him and other danger buttons, D and F grades, errors.',
   },
   {
+    key: 'gain',
+    label: 'Gain',
+    body: "Money and value going your way, the green to Alert's red: cut savings, positive cap space, value gained in a trade.",
+  },
+  {
     key: 'cool',
     label: 'Information',
     body: 'Trade talk and notices: the draft-day phone, trade-block flags, RFA tenders, agent tags.',
