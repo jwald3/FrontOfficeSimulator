@@ -116,7 +116,7 @@ function offerReports(): Plugin {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), editorialSave(), offerReports()],
-  // Set BASE_PATH when the site is served from a subfolder, e.g. /front-office/ on GitHub Pages.
+  // Set BASE_PATH when the site is served from a subfolder, e.g. /FrontOfficeSimulator/ on GitHub Pages.
   base: process.env.BASE_PATH ?? '/',
   build: {
     rolldownOptions: {

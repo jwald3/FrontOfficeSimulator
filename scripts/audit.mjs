@@ -36,7 +36,7 @@ const mins = snap.salaryRules.minimum2027
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 async function get(url) {
   for (let attempt = 0; attempt < 4; attempt++) {
-    const res = await fetch(url, { headers: { 'User-Agent': 'front-office data audit (github.com/jwald3/front-office)' } })
+    const res = await fetch(url, { headers: { 'User-Agent': 'front-office data audit (github.com/jwald3/FrontOfficeSimulator)' } })
     if (res.ok) return res.text()
     if (res.status !== 429 && res.status < 500) throw new Error(`${url}: HTTP ${res.status}`)
     await sleep(5000 * (attempt + 1))

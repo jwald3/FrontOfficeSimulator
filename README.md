@@ -1,5 +1,7 @@
 # Front Office
 
+**Play it: [jwald3.github.io/FrontOfficeSimulator](https://jwald3.github.io/FrontOfficeSimulator/)**
+
 Run a pro football team's 2027 offseason as a game: pick any of the 32 teams, decide the head coach's future, release, restructure and shop players, re-sign your own, work free agency and trades, and run the draft — with the presentation of a franchise mode. Every page takes on your team's colours.
 
 ## Run it
@@ -13,7 +15,7 @@ npm run build    # static build in dist/
 
 Append `?instant` to the URL to skip all animations.
 
-To serve it from a subfolder (GitHub Pages, for one), build with `BASE_PATH=/front-office/ npm run build`. `.github/workflows/pages.yml` does this on every push to `main` once Pages is set to deploy from GitHub Actions. See `CONTRIBUTING.md` to help out.
+To serve it from a subfolder (GitHub Pages, for one), build with `BASE_PATH=/FrontOfficeSimulator/ npm run build`. `.github/workflows/pages.yml` does this on every push to `main` once Pages is set to deploy from GitHub Actions. See `CONTRIBUTING.md` to help out.
 
 ## Playing as any team
 
