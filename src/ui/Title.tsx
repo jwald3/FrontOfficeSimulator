@@ -453,6 +453,12 @@ function About({ snap, onBack }: { snap: Snapshot; onBack: () => void }) {
           A fan project, not affiliated with or endorsed by the NFL or any team. Contracts and cap tables from OverTheCap, depth charts from
           OurLads, headshots from NFL.com via nflverse, coaching staffs from Wikipedia.
         </p>
+        <p className="muted about-credit">
+          Front Office is open source (MIT). Fork it, change it, make it yours:{' '}
+          <a className="about-link" href="https://github.com/jwald3/FrontOfficeSimulator" target="_blank" rel="noreferrer">
+            github.com/jwald3/FrontOfficeSimulator
+          </a>
+        </p>
         <ul className="about-notes about-sources">
           {(snap.sources ?? []).map((s) => (
             <li key={s.url + s.label}>

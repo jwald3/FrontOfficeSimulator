@@ -2,6 +2,28 @@
   "name": "front-office",
   "private": true,
   "version": "0.0.0",
+  "description": "Open-source pro football offseason simulator: run any team's offseason in its colours. Fork it and make it yours.",
+  "license": "MIT",
+  "homepage": "https://jwald3.github.io/FrontOfficeSimulator/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jwald3/FrontOfficeSimulator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jwald3/FrontOfficeSimulator/issues"
+  },
+  "keywords": [
+    "open-source",
+    "football",
+    "football-simulator",
+    "sports-simulation",
+    "salary-cap",
+    "draft-simulator",
+    "offseason",
+    "game",
+    "react",
+    "typescript"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",

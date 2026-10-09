@@ -1,8 +1,20 @@
 # Front Office
 
-**Play it: [jwald3.github.io/FrontOfficeSimulator](https://jwald3.github.io/FrontOfficeSimulator/)**
+**Play it: [jwald3.github.io/FrontOfficeSimulator](https://jwald3.github.io/FrontOfficeSimulator/)** · Open source, MIT-licensed
 
 Run a pro football team's 2027 offseason as a game: pick any of the 32 teams, decide the head coach's future, release, restructure and shop players, re-sign your own, work free agency and trades, and run the draft — with the presentation of a franchise mode. Every page takes on your team's colours.
+
+## Make it yours
+
+Front Office is open source, and you're encouraged to use it however you like: fork it, mod it, re-skin it for your team's fan site, swap in your own rules or data, or pull the engine out for something else entirely. The code is MIT-licensed, so you can use, change and share it, commercially or not, as long as the license notice comes along.
+
+Some places to start:
+
+- **Your team, your site:** the colours, head coach decision copy, hiring board, re-sign calls and suggested moves are all editorial: change them on the Editorial screen (`npm run dev`, then Editorial on the title menu) without touching code, then deploy your own copy with the GitHub Pages workflow.
+- **Your rules:** the engine in `src/engine/` is plain TypeScript with no UI, from the cap rules to the trade-value model and the draft AI, and it's covered by tests.
+- **Your data:** the data files in `public/data/` are plain JSON with scripts to refresh them (see `CONTRIBUTING.md`).
+
+Improvements that would help everyone are welcome back as pull requests, and bug reports and data corrections as issues.
 
 ## Run it
 
@@ -131,4 +143,4 @@ The full list, with links, is in the snapshot's `sources` array and on the **Dat
 
 ## License
 
-The code is released under the MIT License (see `LICENSE`). The data in `public/data/` comes from the sources above and isn't covered by that license.
+The code is released under the MIT License (see `LICENSE`): use it, modify it and share it freely. The data in `public/data/` comes from the sources above and isn't covered by that license; check each source's terms before reusing it.

@@ -253,3 +253,4 @@
 }
 .menu-team:hover, .menu-team:focus-visible { background: rgb(var(--accent-rgb) / 0.15); outline: none; }
 .menu-team-change { font-family: var(--font-display); font-weight: 700; font-style: italic; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--pop); }
+.about-link { color: var(--accent); }

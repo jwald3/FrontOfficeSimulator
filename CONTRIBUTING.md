@@ -1,6 +1,6 @@
 # Contributing to Front Office
 
-Thanks for helping. Bug reports, data corrections and pull requests are all welcome.
+Thanks for helping. Bug reports, data corrections and pull requests are all welcome, and so are forks: if you're building your own version rather than contributing back, the README's **Make it yours** section has some places to start.
 
 ## Getting set up
 
